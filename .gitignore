@@ -83,7 +83,12 @@ Thumbs.db
 # IDE FILES
 *.sublime-*
 *.tmproj
-.vscode
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # BOWER & BUILD TOOLS
 /build/*
