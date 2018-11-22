@@ -118,3 +118,5 @@ sites/*/private
 
 .env
 .flaskenv
+
+/cyphervenv
