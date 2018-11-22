@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>The Cypher</title>
+    </head>
+    <body>
+        <div>
+            The Cypher:
+            <a href="{{ url_for('main.index') }}">Home</a>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('auth.login') }}">Login</a>
+            {% endif %}
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>
