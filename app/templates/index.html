@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Welcome to the Cypher</h1>
+    <h1>{{ 'Welcome to the Cypher, {username}!'.format(username=current_user.username) }}</h1>
 
     {% for post in posts %}
     <h2>{{ post.master.username }}</h2>
