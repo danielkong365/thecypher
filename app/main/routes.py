@@ -8,5 +8,4 @@ from flask_login import current_user, login_required
 @bp.route('/', methods=['GET', 'POST'])
 @bp.route('/index', methods=['GET', 'POST'])
 def index():
-    
     return render_template('index.html')
