@@ -2,6 +2,7 @@
     <head>
         <title>The Cypher</title>
     </head>
+    <link rel="stylesheet" href="static/styles.css">
     <body>
         <div>
             The Cypher:
@@ -14,6 +15,8 @@
             {% endif %}
             
         </div>
+        <canvas id="canvas" height="100" width="100"></canvas>
         {% block content %}{% endblock %}
+        <script src="{{ url_for('static', filename='js/clock.js') }}"></script>
     </body>
 </html>
