@@ -21,6 +21,10 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
     
+    def get_location_posts(self):
+        in_location = Post.query.filter(self.location==Post.location)
+        return in_location
+    
         
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
