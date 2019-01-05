@@ -7,5 +7,7 @@ from flask_login import current_user, login_required
 
 @bp.route('/', methods=['GET', 'POST'])
 @bp.route('/index', methods=['GET', 'POST'])
+@login_required
 def index():
-    return render_template('index.html')
+    posts = current_user.get_location_posts()
+    return render_template('index.html', posts=posts)
