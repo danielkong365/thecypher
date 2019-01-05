@@ -2,6 +2,7 @@ from app import db, login
 from hashlib import md5
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlalchemy.orm import backref
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,7 +25,20 @@ class User(UserMixin, db.Model):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     location = db.Column(db.String(64), index=True)
+    title = db.Column(db.String(128), index=True)
+    description = db.Column(db.String(1024), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class Event(Post):
+    event_id = db.Column(db.Integer, db.ForeignKey('post.id'), primary_key=True)
+    datetime = db.Column(db.DateTime)
+
+
+class Session(Post):
+    session_id = db.Column(db.Integer, db.ForeignKey('post.id'), primary_key=True)
+    datetime = db.Column(db.DateTime)
+    reoccuring = db.Column(db.Boolean)
 
 @login.user_loader
 def load_user(user_id):
