@@ -9,5 +9,16 @@ from flask_login import current_user, login_required
 @bp.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    posts = current_user.get_location_posts()
+    posts = [
+        {
+            'master': {'username': 'dk'},
+            'title' : 'DK Donger Sessions',
+            'location' : 'ATL'
+        },
+        {
+            'master' : {'username': 'dk'},
+            'title' : 'HEllo bithes'
+        }
+    ]
+    #current_user.get_location_posts()
     return render_template('index.html', posts=posts)
