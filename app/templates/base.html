@@ -2,7 +2,7 @@
     <head>
         <title>The Cypher</title>
     </head>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href= "{{ url_for('static', filename='styles.css') }}">
     <body>
         <div>
             The Cypher:
@@ -13,10 +13,8 @@
             {% else %}
             <a href="{{ url_for('auth.logout') }}">Logout</a>
             {% endif %}
-            
         </div>
         <canvas id="canvas" height="100" width="100"></canvas>
-        {% block content %}{% endblock %}
         <div>
             {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -26,6 +24,7 @@
             {% endif %}
             {% endwith %}
         </div>
+        {% block content %}{% endblock %}
         <script src="{{ url_for('static', filename='js/clock.js') }}"></script>
     </body>
 </html>

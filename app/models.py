@@ -29,6 +29,7 @@ class User(UserMixin, db.Model):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     location = db.Column(db.String(64), index=True)
+    address = db.Column(db.String(128), index=True)
     title = db.Column(db.String(128), index=True)
     description = db.Column(db.String(1024), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
