@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="" method=post>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(size=32) }}<br>
+            {% for error in form.title.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(size=32) }}<br>
+            {% for error in form.description.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.location.label }}<br>
+            {{ form.location(size=32) }}<br>
+            {% for error in form.location.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.datetime.label }}<br>
+            {{ form.datetime(size=32) }}<br>
+            {% for error in form.datetime.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.reoccuring() }} {{ form.reoccuring.label }}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+    {% for post in posts %} 
+        <div>
+            <h2>{{ post.title }}</h2>
+            <h3>Hosted by {{ post.master.username }}</h3>
+            <h4>{{ post.location }}</h4>
+            <p>{{ post.description }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
