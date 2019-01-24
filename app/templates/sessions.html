@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for post in posts %} 
+        <div>
+            <h2>{{ post.title }}</h2>
+            <h3>Hosted by {{ post.master.username }}</h3>
+            <h4>{{ post.location }}</h4>
+            <p>{{ post.description }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -10,7 +10,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     location = db.Column(db.String(64), index=True)
-    posts = db.relationship('Post', backref='master', lazy='dynamic')
+    sessions = db.relationship('Session', backref='master', lazy='dynamic')
+    events = db.relationship('Event', backref='master', lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -21,27 +22,32 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
     
-    def get_location_posts(self):
-        in_location = Post.query.filter(self.location==Post.location)
+    def get_location_events(self):
+        in_location = Event.query.filter(self.location==Event.location)
         return in_location
     
-        
-class Post(db.Model):
+    def get_location_sessions(self):
+        in_location = Session.query.filter(self.location==Session.location)
+        return in_location
+    
+
+class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     location = db.Column(db.String(64), index=True)
     address = db.Column(db.String(128), index=True)
     title = db.Column(db.String(128), index=True)
     description = db.Column(db.String(1024), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-
-class Event(Post):
-    event_id = db.Column(db.Integer, db.ForeignKey('post.id'), primary_key=True)
     datetime = db.Column(db.DateTime)
 
 
-class Session(Post):
-    session_id = db.Column(db.Integer, db.ForeignKey('post.id'), primary_key=True)
+class Session(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    location = db.Column(db.String(64), index=True)
+    address = db.Column(db.String(128), index=True)
+    title = db.Column(db.String(128), index=True)
+    description = db.Column(db.String(1024), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     datetime = db.Column(db.DateTime)
     reoccuring = db.Column(db.Boolean)
 

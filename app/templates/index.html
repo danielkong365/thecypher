@@ -4,8 +4,10 @@
     {% if current_user.is_authenticated %}
     <h1>{{ 'Welcome to the Cypher, {username}!'.format(username=current_user.username) }}</h1>
     {% endif %}
-    {% for post in posts %}
-    <h2 class = "title">{{ post.title }}</h2>
-    <p class = "userlocation" >Posted by: {{ post.master.username }} in {{ post.location }}</p>
-    {% endfor %}
+    <h2>What are you looking for today?</h2>
+    <div id = "options">
+        <form>
+        <input class = "button" type = "button" value = "Sessions" onclick="window.location.href='sessions'"/>
+        </form>
+    </div>
 {% endblock %}
