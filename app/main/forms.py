@@ -1,6 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, TextAreaField, PasswordField, BooleanField, SubmitField, DateTimeField
 from wtforms.validators import ValidationError, DataRequired, EqualTo, Length
 
-class PostForm(FlaskForm):
+class SessionForm(FlaskForm):
+    
+    title = StringField("Title", validators = [DataRequired()])
+    description = StringField("Description")
+    location = StringField("Location", validators = [DataRequired()])
+    datetime = StringField("Date(s)", validators = [DataRequired()])
+    reoccuring = BooleanField("Reoccuring?")
+    submit = SubmitField("Post Session")
     

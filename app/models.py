@@ -23,11 +23,11 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
     
     def get_location_events(self):
-        in_location = Event.query.filter(self.location==Event.location)
+        in_location = Event.query.filter(self.location==Event.location).all()
         return in_location
     
     def get_location_sessions(self):
-        in_location = Session.query.filter(self.location==Session.location)
+        in_location = Session.query.filter(self.location==Session.location).all()
         return in_location
     
 
@@ -48,7 +48,7 @@ class Session(db.Model):
     title = db.Column(db.String(128), index=True)
     description = db.Column(db.String(1024), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    datetime = db.Column(db.DateTime)
+    datetime = db.Column(db.String(64),index=True)
     reoccuring = db.Column(db.Boolean)
 
 @login.user_loader
