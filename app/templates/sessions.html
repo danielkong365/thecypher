@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="" method=post>
+<button id = "sessionToggle" onclick="HideContent()">Hide Session Form</button>
+<div id = "sessionForm"> 
+    <form action="" method=post>
         {{ form.hidden_tag() }}
         <p>
             {{ form.title.label }}<br>
@@ -38,12 +40,19 @@
             {{ form.submit() }}
         </p>
     </form>
+</div>
     {% for post in posts %} 
         <div>
             <h2>{{ post.title }}</h2>
             <h3>Hosted by {{ post.master.username }}</h3>
             <h4>{{ post.location }}</h4>
             <p>{{ post.description }}</p>
+            {% if post.reoccuring %} 
+                <p>Every:</p>
+            {% endif %}
+            <p> {{ post.datetime }}</p>
         </div>
     {% endfor %}
+<script src = " {{ url_for('static', filename='js/posts.js') }}"></script>
+
 {% endblock %}
