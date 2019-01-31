@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<button id = "eventToggle" onclick="HideEventContent()">Hide Event form</button>
+<div id = "eventForm"> 
+    <form action="" method=post>
+        {{ eform.hidden_tag() }}
+        <p>
+            {{ eform.title.label }}<br>
+            {{ eform.title(size=32) }}<br>
+            {% for error in eform.title.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ eform.description.label }}<br>
+            {{ eform.description(size=32) }}<br>
+            {% for error in eform.description.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ eform.location.label }}<br>
+            {{ eform.location(size=32) }}<br>
+            {% for error in eform.location.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ eform.datetime.label }}<br>
+            {{ eform.datetime(size=32) }}<br>
+            {% for error in eform.datetime.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ eform.submit() }}
+        </p>
+    </form>
+</div>
+    {% for post in posts %} 
+        <div>
+            <h2>{{ post.title }}</h2>
+            <h3>Hosted by {{ post.master.username }}</h3>
+            <h4>{{ post.location }}</h4>
+            <p>{{ post.description }}</p>
+            <p> {{ post.datetime }}</p>
+        </div>
+    {% endfor %}
+    
+{% endblock %}

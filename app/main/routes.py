@@ -3,7 +3,7 @@ from app import db
 from app.main import bp
 from app.models import User, Session, Event
 from flask_login import current_user, login_required
-from app.main.forms import SessionForm
+from app.main.forms import SessionForm, EventForm
 
 
 @bp.route('/', methods=['GET', 'POST'])
@@ -24,3 +24,16 @@ def sessions():
         return redirect(url_for('main.sessions'))
     posts = current_user.get_location_sessions()
     return render_template('sessions.html', posts = posts, form = form)
+
+@bp.route('/events', methods = ['GET', 'POST'])
+@login_required
+def events():
+    eform = EventForm()
+    if eform.validate_on_submit():
+        event = Event(title = eform.title.data, description = eform.description.data, location = eform.location.data, datetime = eform.datetime.data, master = current_user)
+        db.session.add(event)
+        db.session.commit()
+        flash('Session successfully posted!')
+        return redirect(url_for('main.events'))
+    posts = current_user.get_location_events()
+    return render_template('events.html', posts = posts, eform = eform)

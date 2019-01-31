@@ -11,3 +11,9 @@ class SessionForm(FlaskForm):
     reoccuring = BooleanField("Reoccuring?")
     submit = SubmitField("Post Session")
     
+class EventForm(FlaskForm):
+    title = StringField("Title", validators = [DataRequired()])
+    description = StringField("Description")
+    location = StringField("Location", validators = [DataRequired()])
+    datetime = StringField("Date(s)", validators = [DataRequired()])
+    submit = SubmitField("Post Event")
