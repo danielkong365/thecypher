@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<button id = "sessionToggle" onclick="HideContent()">Hide Session Form</button>
+<button id = "sessionToggle" onclick="HideSessionContent()">Hide Session Form</button>
 <div id = "sessionForm"> 
     <form action="" method=post>
         {{ form.hidden_tag() }}
@@ -53,6 +53,4 @@
             <p> {{ post.datetime }}</p>
         </div>
     {% endfor %}
-<script src = " {{ url_for('static', filename='js/posts.js') }}"></script>
-
 {% endblock %}
