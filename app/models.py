@@ -38,7 +38,7 @@ class Event(db.Model):
     title = db.Column(db.String(128), index=True)
     description = db.Column(db.String(1024), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    datetime = db.Column(db.String(64), index=True)
+    date = db.Column(db.Date, index=True)
 
 
 class Session(db.Model):
@@ -48,7 +48,7 @@ class Session(db.Model):
     title = db.Column(db.String(128), index=True)
     description = db.Column(db.String(1024), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    datetime = db.Column(db.String(64),index=True)
+    date = db.Column(db.Date,index=True)
     reoccuring = db.Column(db.Boolean)
 
 @login.user_loader

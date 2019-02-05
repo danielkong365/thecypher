@@ -27,9 +27,9 @@
             {% endfor %}
         </p>
         <p>
-            {{ eform.datetime.label }}<br>
-            {{ eform.datetime(size=32) }}<br>
-            {% for error in eform.datetime.errors %}
+            {{ eform.date.label }}<br>
+            {{ eform.date(size=32) }}<br>
+            {% for error in eform.date.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
@@ -44,7 +44,7 @@
             <h3>Hosted by {{ post.master.username }}</h3>
             <h4>{{ post.location }}</h4>
             <p>{{ post.description }}</p>
-            <p> {{ post.datetime }}</p>
+            <p> {{ post.date }}</p>
         </div>
     {% endfor %}
     

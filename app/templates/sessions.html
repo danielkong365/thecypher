@@ -27,9 +27,9 @@
             {% endfor %}
         </p>
         <p>
-            {{ form.datetime.label }}<br>
-            {{ form.datetime(size=32) }}<br>
-            {% for error in form.datetime.errors %}
+            {{ form.date.label }}<br>
+            {{ form.date(size=32) }}<br>
+            {% for error in form.date.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
@@ -50,7 +50,7 @@
             {% if post.reoccuring %} 
                 <p>Every:</p>
             {% endif %}
-            <p> {{ post.datetime }}</p>
+            <p> {{ post.date }}</p>
         </div>
     {% endfor %}
 {% endblock %}

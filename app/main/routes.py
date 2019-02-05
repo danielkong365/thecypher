@@ -17,7 +17,7 @@ def index():
 def sessions():
     form = SessionForm()
     if form.validate_on_submit():
-        session = Session(title = form.title.data, description = form.description.data, location = form.location.data, datetime = form.datetime.data, master = current_user)
+        session = Session(title = form.title.data, description = form.description.data, location = form.location.data, date = form.date.data, master = current_user)
         db.session.add(session)
         db.session.commit()
         flash('Session successfully posted!')
@@ -30,10 +30,10 @@ def sessions():
 def events():
     eform = EventForm()
     if eform.validate_on_submit():
-        event = Event(title = eform.title.data, description = eform.description.data, location = eform.location.data, datetime = eform.datetime.data, master = current_user)
+        event = Event(title = eform.title.data, description = eform.description.data, location = eform.location.data, date = eform.date.data, master = current_user)
         db.session.add(event)
         db.session.commit()
-        flash('Session successfully posted!')
+        flash('Event successfully posted!')
         return redirect(url_for('main.events'))
     posts = current_user.get_location_events()
     return render_template('events.html', posts = posts, eform = eform)
