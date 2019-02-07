@@ -34,6 +34,20 @@
             {% endfor %}
         </p>
         <p>
+            {{ eform.start_time.label }}<br>
+            {{ eform.start_time(size=32) }}<br>
+            {% for error in eform.start_time.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ eform.end_time.label }}<br>
+            {{ eform.end_time(size=32) }}<br>
+            {% for error in eform.end_time.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
             {{ eform.submit() }}
         </p>
     </form>

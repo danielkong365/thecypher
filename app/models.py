@@ -39,6 +39,8 @@ class Event(db.Model):
     description = db.Column(db.String(1024), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     date = db.Column(db.Date, index=True)
+    start_time = db.Column(db.Time, index=True)
+    end_time = db.Column(db.Time, index=True)
 
 
 class Session(db.Model):
@@ -50,7 +52,9 @@ class Session(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     date = db.Column(db.Date,index=True)
     reoccuring = db.Column(db.Boolean)
-
+    start_time = db.Column(db.Time, index=True)
+    end_time = db.Column(db.Time, index=True)
+    
 @login.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
